@@ -32,8 +32,10 @@ connect both for the full experience.
 **Pip (recommended)** — into the same environment Hermes runs in:
 
 ```bash
-pip install git+https://github.com/jamiepine/hermes-voicebox
+pip install hermes-voicebox
 ```
+
+(Or straight from git: `pip install git+https://github.com/jamiepine/hermes-voicebox`)
 
 Hermes auto-discovers the plugin through its `hermes_agent.plugins` entry
 point on next startup.
