@@ -39,7 +39,3 @@ dev = ["pytest>=8"]
 
 [tool.hatch.build.targets.wheel]
 packages = ["hermes_voicebox"]
-
-[tool.hatch.build.targets.wheel.force-include]
-"hermes_voicebox/skills" = "hermes_voicebox/skills"
-"hermes_voicebox/plugin.yaml" = "hermes_voicebox/plugin.yaml"
