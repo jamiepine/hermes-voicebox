@@ -1,0 +1,8 @@
+# Manifest for the directory-install path (~/.hermes/plugins/voicebox/).
+# Pip installs use the hermes_agent.plugins entry point instead and ignore
+# this file.
+name: voicebox
+version: 0.1.0
+description: Voicebox — local-first voice cloning TTS and Whisper STT for Hermes
+author: James Pine
+kind: backend

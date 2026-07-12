@@ -1,0 +1,45 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "hermes-voicebox"
+version = "0.1.0"
+description = "Voicebox TTS + STT providers for Hermes Agent — voice cloning and Whisper transcription, fully local"
+readme = "README.md"
+license = { text = "MIT" }
+authors = [{ name = "James Pine" }]
+requires-python = ">=3.11"
+dependencies = [
+    "requests>=2.31",
+]
+keywords = ["hermes-agent", "voicebox", "tts", "stt", "whisper", "voice-cloning"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: Multimedia :: Sound/Audio :: Speech",
+]
+
+[project.urls]
+Homepage = "https://github.com/jamiepine/hermes-voicebox"
+Documentation = "https://docs.voicebox.sh/overview/hermes-agent"
+Voicebox = "https://voicebox.sh"
+
+# Hermes Agent discovers the plugin through this entry point; the package's
+# top-level register(ctx) is called once at startup.
+[project.entry-points."hermes_agent.plugins"]
+voicebox = "hermes_voicebox"
+
+[project.optional-dependencies]
+dev = ["pytest>=8"]
+
+[tool.hatch.build.targets.wheel]
+packages = ["hermes_voicebox"]
+
+[tool.hatch.build.targets.wheel.force-include]
+"hermes_voicebox/skills" = "hermes_voicebox/skills"
+"hermes_voicebox/plugin.yaml" = "hermes_voicebox/plugin.yaml"
