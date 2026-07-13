@@ -16,10 +16,42 @@ pipeline runs through the Voicebox app on your machine:
   [Captures](https://docs.voicebox.sh/overview/captures) through Voicebox's
   MCP server.
 
-This plugin wires Hermes's *own* voice pipeline. Agent-invoked tools (speak
-on demand, transcribe a file, list captures/profiles) live on Voicebox's
-built-in [MCP server](https://docs.voicebox.sh/overview/mcp-server) —
-connect both for the full experience.
+## What this actually does
+
+Hermes already has voice features out of the box — it can speak replies
+aloud, send voice bubbles, and transcribe voice memos people send it. Those
+features need an engine to do the audio work, and Hermes ships with cloud
+defaults: Microsoft Edge TTS for speaking, Groq/OpenAI Whisper for
+transcribing.
+
+**This plugin adds no new features. It swaps the engine behind the existing
+ones** — like changing your default printer. Two before/after examples:
+
+- *Someone sends your Hermes bot a voice memo on Telegram.* Hermes must
+  transcribe it before the model can read it. Without this plugin, the
+  audio is uploaded to Groq's or OpenAI's servers. With it, Hermes posts
+  the file to your running Voicebox app and local Whisper transcribes it —
+  the audio never leaves your machine.
+- *Hermes speaks a reply* (voice mode, or a voice bubble in chat). Without
+  this plugin: a stock Microsoft voice. With it: your cloned Voicebox
+  profile.
+
+Note what's absent from both: the agent deciding anything. Transcription
+happens before the model runs; synthesis happens after it's done. This is
+pipeline plumbing, not a tool the model calls — which is why MCP can't do
+this job.
+
+The complement is Voicebox's built-in
+[MCP server](https://docs.voicebox.sh/overview/mcp-server), which covers
+the *deliberate* voice actions ("read that back in Morgan's voice",
+"what did I dictate this morning?") as tools the agent chooses to call.
+Connect both for the full experience:
+
+| | MCP server | This plugin |
+|---|---|---|
+| What it adds | New tools the agent can *choose* to call | Nothing visible — reroutes existing plumbing |
+| Speak / transcribe when | The model decides to | Hermes's pipeline needs it (always) |
+| Setup | `hermes mcp install voicebox` | `pip install hermes-voicebox` + two config lines |
 
 ## Requirements
 
