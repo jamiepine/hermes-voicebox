@@ -136,8 +136,8 @@ used when the real ones aren't importable.
 ## Docs
 
 - [Voicebox × Hermes integration guide](https://docs.voicebox.sh/overview/hermes-agent)
-- Hermes developer guides: [TTS providers](https://hermes-agent.nousresearch.com/docs/developer-guide/tts-provider-plugin) ·
-  [Transcription providers](https://hermes-agent.nousresearch.com/docs/developer-guide/transcription-provider-plugin)
+- Provider contracts: `agent/tts_provider.py` and `agent/transcription_provider.py` in
+  [hermes-agent](https://github.com/NousResearch/hermes-agent) (this plugin implements both ABCs)
 
 ## License
 
